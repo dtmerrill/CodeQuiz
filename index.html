@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSQuiz4Fun?</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<br>
+<h1 class=banner>Test your JavaScript knowledge!</h1>
+
+<body>
+    <br>
+  <div class="score-board">
+    <div class="high-scores">
+      <button class="btn" id="high-scores">Scores</button>
+    </div>
+    <div class="timer">
+      <h1 id="timer">Remaining Time: </h1>
+    </div>
+  </div>
+  <div class="question-card">
+    <div id="answer-return"></div>
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+      </div>
+    </div>
+
+    <p id="description">
+      This is a quick knowledge check for you on JavaScript basics. Click "Start" and answer as many questions as you can until time runs out. Wrong answers will penalize you by removing some of your time.
+      <br>
+      <br>
+      (Information is taken from JAVASCRIPT & JQUERY, Jon Duckett, John Wiley & Sons, Inc., 2014.)
+    </p>
+    <br>
+    <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+      </div>
+    </div>
+  </div>
+  <div class="score hide" id="score">
+    <h1 id="user-score"></h1>
+      <form action="" id="form">
+        <input type="text" name="data" id="initials" placeholder="Your Name or Initials">
+        <button id="submit">Submit</button>
+      </form>
+  </div>
+  <div class="container hide" id="leaderboard">
+    <h1>Top Scores</h1>
+      <ul id="leaders">
+      </ul>
+      <button class="btn" id="clear">Clear</button>
+      <button class="btn" id="play-again">Try Again</button>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
