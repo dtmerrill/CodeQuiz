@@ -16,7 +16,17 @@
       color: rgb(180, 179, 179);
       align-content: center;
   }
-  
+  #rightAns{
+      color: green;
+      font-size: 40px;
+      align-content: center;
+  }
+  #wrongAns{
+      color: red;
+      font-size: 40px;
+      align-content: center;
+  }
+
   .score-board {
     display: flex;
     flex-direction: row;
@@ -154,7 +164,7 @@
   .score form {
     align-items: center;
   }
-  
+
   #leaderboard {
     text-align: center;
     justify-content: space-between;

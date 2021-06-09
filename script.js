@@ -29,11 +29,14 @@ var tryAgain = document.getElementById('play-again');
 var allScoresList = document.getElementById('leaders');
 var leaderBoardButton = document.getElementById('high-scores');
 var currentQuestionIndex;
+var rightAnsPost = document.getElementById('rightAns');
+var wrongAnsPost = document.getElementById('wrongAns');
+//var allDonePost = document.getElementById('allDone');
 var sec = 60;
 var score = 0;
 
 // 2: start button listener
-startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', startQuiz);
 
 // 3: randomizer for questions array
 function shuffleArray(passedArray) {
@@ -49,7 +52,7 @@ function shuffleArray(passedArray) {
 // 4: quiz timer
 function timer() {
     var timer = setInterval(function () {
-        document.getElementById('timer').textContent = 'Time: ' + sec;
+        document.getElementById('timer').textContent = 'Remaining Time: ' + sec;
         if (sec <= 0) {
             clearInterval(timer);
             endQuiz()
@@ -61,7 +64,7 @@ function timer() {
 var shuffled = [];
 
 // 5: start button/hide elements/run quiz pt.1
-function startGame() {
+function startQuiz() {
     timer();
     startButton.classList.add('hide');
     description.classList.add('hide');
@@ -120,14 +123,16 @@ function showQuestion(currentQuestionObject) {
 function selectAnswer(isCorrect) {
     if (isCorrect == true) {
         score += 10;
-        alert('Correct');
+        wrongAnsPost.classList.add('hide');
+        rightAnsPost.classList.remove('hide');
     } else {
         sec -= 10;
-        alert('Incorrect! Time Deducted');
+        rightAnsPost.classList.add('hide');
+        wrongAnsPost.classList.remove('hide');
     }
     currentQuestionIndex++;
     if (currentQuestionIndex == shuffled.length) {
-        alert("That's All the Questions! Lets see how you did!");
+        alert("You have completed all of questions! Click OK for your score!");
         endQuiz();
     } else {
         showQuestion(shuffled[currentQuestionIndex]);
@@ -137,6 +142,9 @@ function selectAnswer(isCorrect) {
 // 8: ends the quiz/shows and stores score
 function endQuiz() {
     sec = 0;
+    alert("You have run out of time! Click OK for your score!");
+    rightAnsPost.classList.add('hide');
+    wrongAnsPost.classList.add('hide');
     questionContainerEl.classList.add('hide');
     scores.classList.remove('hide');
     leaderBoardButton.classList.remove('hide');
@@ -166,7 +174,7 @@ function startAgain() {
     sec = 60;
     score = 0;
     leaderboard.classList.add('hide');
-    startGame();
+    startQuiz();
 }
 
 // "try again" listener
@@ -248,25 +256,25 @@ var questionArray = [
     }, {
         title: 'Bits of information stored for use in a script that might change every time it is run are',
         options: [
+            { text: 'Variables', correct: true },
             { text: 'Constants', correct: false },
             { text: 'Vectors', correct: false },
             { text: 'Bytes', correct: false },
-            { text: 'Variables', correct: true },
         ],
     }, {
         title: 'To use information in a script, each "bit" must be ______ and had a value ______.',
         options: [
             { text: 'Updated/Applied', correct: false },
+            { text: 'Declared/Assigned', correct: true },
             { text: 'Identified/Calculated', correct: false },
             { text: 'Addressed/Strummed', correct: false },
-            { text: 'Declared/Assigned', correct: true },
         ]
     }, {
         title: 'JavaScript data types include: Arrays, Objects, Undefined, Null,',
         options: [
             { text: 'Prime, Useful, Pointed', correct: false },
-            { text: 'Numeric, Strings, Boolean', correct: true },
             { text: 'Assigned, Aligned, Refined', correct: false },
+            { text: 'Numeric, Strings, Boolean', correct: true },
             { text: 'Sugar, Salt, Fat', correct: false },
         ]
     }, {
