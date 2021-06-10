@@ -31,7 +31,6 @@ var leaderBoardButton = document.getElementById('high-scores');
 var currentQuestionIndex;
 var rightAnsPost = document.getElementById('rightAns');
 var wrongAnsPost = document.getElementById('wrongAns');
-//var allDonePost = document.getElementById('allDone');
 var sec = 60;
 var score = 0;
 
@@ -142,7 +141,7 @@ function selectAnswer(isCorrect) {
 // 8: ends the quiz/shows and stores score
 function endQuiz() {
     sec = 0;
-    alert("You have run out of time! Click OK for your score!");
+    clock.classList.add('hide')
     rightAnsPost.classList.add('hide');
     wrongAnsPost.classList.add('hide');
     questionContainerEl.classList.add('hide');
@@ -171,6 +170,7 @@ function addScores(initials, score) {
 
 // 10: quiz restart
 function startAgain() {
+    clock.classList.remove('hide')
     sec = 60;
     score = 0;
     leaderboard.classList.add('hide');
@@ -184,7 +184,13 @@ tryAgain.addEventListener('click', function () {
 
 // 11: clear/save/show scores
 function clearScoresHistory() {
-    localStorage.clear();
+ //   localStorage.removeItem('scoresToKeep');
+    localStorage.clear("scoresToKeep");
+    localStorage.clear("namesToKeep");
+    localStorage.clear("listOfLeaders");
+
+
+ //   localStorage.setItem("");
     allScoresList.innerHTML = "";
 }
 clearScores.addEventListener('click',clearScoresHistory)
@@ -203,16 +209,27 @@ function showScoresHistory() {
         allScoresList.append(newLeader);
     }
 }
-
+function showScoresOriginal() {
+    namesToKeep = userInitials.value;
+    scores.classList.add('hide');
+    leaderboard.classList.remove('hide');
+    allScoresList.innerHTML = "";
+    var displayScores = JSON.parse(localStorage.getItem("scoresToKeep"));
+    for (i = 0; i < displayScores.length; i++) {
+        var newLeader = document.createElement("li");
+        newLeader.setAttribute("class", "listOfLeaders");
+        newLeader.append(document.createTextNode(`${displayScores[i].initials} ----- ${displayScores[i].score}`));
+        allScoresList.append(newLeader);
+    }
+}
 leaderBoardButton.addEventListener('click', function () {
     startButton.classList.add('hide');
     description.classList.add('hide');
     questionContainerEl.classList.add('hide');
     scores.classList.add('hide');
-    showScoresHistory();
+    showScoresOriginal();
 });
-console.log(scoresToKeep)
-console.log(scores)
+
 
 // 12: questions/answers
 var questionArray = [
