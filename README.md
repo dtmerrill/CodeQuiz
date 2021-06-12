@@ -24,6 +24,16 @@ Thanks for asking! It is simple code but I especially like the Right/Wrong feedb
 
 I hope you enjoy the quiz and don't find it too simple! Cheers!
 
+Here's the look and feel:
+![Calming colors but not the most simple quiz.](./Assets/JSQuizlanding.png)
+
+![Quiz](./Assets/JSQuizquiz.png)
+
+![Save](./Assets/JSQuizscore.png)
+
+![Scoreboard](./Assets/JSQuizboard.png)
+
+
 ## Installation
 Great news! Simply launch the page associated with the repo to view and use this code:
 
